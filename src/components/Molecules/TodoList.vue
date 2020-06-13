@@ -1,8 +1,9 @@
 <template>
   <div class="todo-list">
     <div class="todo-list__items" v-for="(item, index) in todos" :key="index">
-      <BaseCheckBox :value="item.progress" @change="setProgress(index)" />
-      <TodoListItem :item="item" />
+      <BaseCheckBox :value="item.progress" @change="setProgress(index)" type="is-success" />
+      <TodoListItem :item="item" @click="setProgress(index)" />
+      <BaseIcon icon="window-close" @click="deleteTodo(index)"/>
     </div>
   </div>
 </template>
@@ -17,6 +18,8 @@ import {
 
 import TodoListItem from '@/components/Atoms/TodoListItem.vue';
 import BaseCheckBox from '@/components/Atoms/BaseCheckBox.vue';
+import BaseIcon from '@/components/Atoms/BaseIcon.vue';
+import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
   label: string;
@@ -26,7 +29,8 @@ type Props = {
 export default defineComponent({
   components: {
     TodoListItem,
-    BaseCheckBox
+    BaseCheckBox,
+    BaseIcon
   },
   props: {
     todos: {
@@ -35,12 +39,15 @@ export default defineComponent({
     },
   },
   setup(props: Props, context: SetupContext) {
-
     const setProgress = (index: number) => {
       context.emit('setProgress', index);
     }
+    const deleteTodo = (index: number) => {
+      context.emit('deleteTodo', index);
+    }
     return {
-      setProgress
+      setProgress,
+      deleteTodo
     }
   }
 })

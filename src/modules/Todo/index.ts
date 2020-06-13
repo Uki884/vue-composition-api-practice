@@ -31,6 +31,10 @@ export default ( context: SetupContext) => {
     state.todos[index].progress = !state.todos[index].progress;
   }
 
+  function deleteTodo(index: number) {
+    state.todos.splice(index, 1);
+  }
+
   function changeTodoInput(item: string) {
     context.emit("change", item);
   }
@@ -39,6 +43,7 @@ export default ( context: SetupContext) => {
     setInputTodo,
     changeTodoInput,
     setProgress,
+    deleteTodo,
     addTodo,
     state,
   };

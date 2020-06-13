@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-list__item" :class="isDone ? 'is-done': null">
+    <div class="todo-list__item" @click.stop="setProgress" :class="isDone ? 'is-done': null">
       {{item.todo}}
     </div>
 </template>
@@ -32,13 +32,27 @@ export default defineComponent({
       if (props.item.progress) return true;
       return false;
     });
-    return { isDone };
+
+    const setProgress = () => {
+      context.emit('click');
+    }
+
+    return {
+      isDone,
+      setProgress,
+    };
   }
 })
 
 </script>
 
 <style lang="scss" scoped>
+.todo-list__item {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
 .is-done {
   text-decoration: line-through;
 }

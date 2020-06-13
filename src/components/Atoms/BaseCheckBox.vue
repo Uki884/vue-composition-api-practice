@@ -1,5 +1,5 @@
 <template>
-  <b-checkbox v-model="inputValue" @click="submit()" />
+  <b-checkbox v-model="inputValue" @click="submit()" :type="type" />
 </template>
 
 <script lang="ts">
@@ -12,6 +12,7 @@ import {
 
 type Props = {
   value: boolean;
+  type: string
 };
 
 export default defineComponent({
@@ -20,9 +21,15 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    type: {
+      type: String,
+      default: ''
+    }
   },
   setup(props: Props, context: SetupContext) {
     props.value;
+    props.type;
+
     const updateValue = (e: Event) =>{
       context.emit('change', (e.target as HTMLInputElement).value);
     }

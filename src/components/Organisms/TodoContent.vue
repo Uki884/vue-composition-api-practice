@@ -1,7 +1,7 @@
 <template>
   <div class="todo-content">
     <TodoInputField :inputTodo="state.inputTodo" @change="setInputTodo" @addTodo="addTodo" label="タスク" />
-    <TodoList :todos="state.todos" @setProgress="setProgress" />
+    <TodoList :todos="state.todos" @setProgress="setProgress" @deleteTodo="deleteTodo" />
   </div>
 </template>
 
