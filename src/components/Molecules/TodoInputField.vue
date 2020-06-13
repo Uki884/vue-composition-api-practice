@@ -1,7 +1,7 @@
 <template>
   <div class="common-input-fields">
-      <BaseInput :value="inputTodo" @change="changTodoInput" />
-      <BaseButton @click="submit()" text="追加" />
+      <BaseInput :value="inputTodo" @change="changeTodoInput" />
+      <BaseButton @click="addTodo" text="追加" />
   </div>
 </template>
 
@@ -15,6 +15,7 @@ import {
 
 import BaseButton from '@/components/Atoms/BaseButton.vue';
 import BaseInput from '@/components/Atoms/BaseInput.vue';
+import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
   inputTodo: string;
@@ -36,17 +37,15 @@ export default defineComponent({
     BaseInput
   },
   setup(props: Props, context: SetupContext) {
-    const changTodoInput = (input: String) => {
-      console.log('発火');
+    const changeTodoInput = (input: String) => {
       context.emit('change', input);
     };
-    const submit = () => {
-      // state.todos.push(state.inputTodo);
-      // state.inputTodo = "";
+    const addTodo = ()=> {
+        context.emit('addTodo');
     };
     return {
-      submit,
-      changTodoInput
+      changeTodoInput,
+      addTodo
     };
   }
 })
@@ -57,5 +56,8 @@ export default defineComponent({
   .common-input-fields {
     display: flex;
     justify-content: center;
+  }
+  .control {
+    flex: 1;
   }
 </style>

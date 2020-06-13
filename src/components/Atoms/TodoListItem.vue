@@ -1,5 +1,7 @@
 <template>
-    <div class="todo-list__item">タスク一覧</div>
+    <div class="todo-list__item" :class="isDone ? 'is-done': null">
+      {{item.todo}}
+    </div>
 </template>
 
 <script lang="ts">
@@ -11,23 +13,33 @@ import {
 } from "@vue/composition-api";
 
 type Props = {
-  text: string;
+  item: {
+    todo: string,
+    progress: boolean
+  };
 };
 
 export default defineComponent({
   props: {
-    text: {
-      type: String,
-      default: ''
+    item: {
+      type: Object,
+      default: null
     },
   },
   setup(props: Props, context: SetupContext) {
-    props.text;
+    props.item;
+    const isDone = computed(()=>{
+      if (props.item.progress) return true;
+      return false;
+    });
+    return { isDone };
   }
 })
 
 </script>
 
 <style lang="scss" scoped>
-
+.is-done {
+  text-decoration: line-through;
+}
 </style>

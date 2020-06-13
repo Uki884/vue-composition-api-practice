@@ -1,7 +1,7 @@
 <template>
-  <div class="task-content">
-    <TodoInputField :inputTodo="state.inputTodo" @change="changeTodoInput" label="タスク" />
-    <TodoListItem />
+  <div class="todo-content">
+    <TodoInputField :inputTodo="state.inputTodo" @change="setInputTodo" @addTodo="addTodo" label="タスク" />
+    <TodoList :todos="state.todos" @setProgress="setProgress" />
   </div>
 </template>
 
@@ -13,41 +13,25 @@ import {
   SetupContext
 } from "@vue/composition-api";
 
-import TodoListItem from '@/components/Atoms/TodoListItem.vue';
+import TodoList from '@/components/Molecules/TodoList.vue';
 import TodoInputField from '@/components/Molecules/TodoInputField.vue';
+
+import TodoModule from '@/modules/Todo/index.ts';
 
 interface TodoState {
   todos: string[];
   inputTodo: string;
 }
 
-type Props = {
-  label: string;
-  value: string;
-};
-
 export default defineComponent({
   components: {
     TodoInputField,
-    TodoListItem
+    TodoList
   },
-  setup(props: Props, context: SetupContext) {
-    const state = reactive<TodoState>({
-      todos: [] as string[],
-      inputTodo: ""
-    });
-    const submit = () => {
-      state.todos.push(state.inputTodo);
-      state.inputTodo = "";
-    };
-    const changeTodoInput = (input: string) => {
-      state.inputTodo = input;
-      console.log(state);
-    };
+  setup(context: SetupContext) {
+    const itemModule = TodoModule(context);
     return {
-      state,
-      submit,
-      changeTodoInput
+      ...itemModule,
     };
   }
 })
@@ -55,5 +39,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
+.todo-content {
+  padding: 24px;
+  margin: 0 auto;
+  width: 500px;
+}
 
 </style>
