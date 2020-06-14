@@ -4,11 +4,15 @@
       :inputTodo="state.inputTodo"
       @change="setInputTodo"
       @addTodo="addTodo"
-      @selectPriority="selectPriority"
+      @selectPriority="updatePriority"
       :priority="state.priority"
       label="タスク"
     />
-    <TodoList :todos="state.todos" @setProgress="setProgress" @deleteTodo="deleteTodo" />
+    <TodoList
+      :todos="state.todos"
+      @setProgress="setProgress"
+      @deleteTodo="deleteTodo"
+    />
   </div>
 </template>
 
@@ -35,9 +39,9 @@ export default defineComponent({
     TodoList
   },
   setup(props, context: SetupContext) {
-    const itemModule = TodoModule(context);
+    const todoModule = TodoModule(context);
     return {
-      ...itemModule,
+      ...todoModule,
     };
   }
 })

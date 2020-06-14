@@ -48,19 +48,13 @@ export default defineComponent({
     }
   },
   setup(props: Props, context: SetupContext) {
-    const changeTodoInput = (input: string) => {
-      context.emit('change', input);
-    };
-    const selectPriority = (priority: number) => {
-      context.emit('selectPriority', priority);
-    }
+    const todoModule = TodoModule(context);
     const addTodo = ()=> {
         context.emit('addTodo');
     };
     return {
-      changeTodoInput,
-      addTodo,
-      selectPriority
+      ...todoModule,
+      addTodo
     };
   }
 })

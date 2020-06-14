@@ -21,6 +21,7 @@ import {
 } from "@vue/composition-api";
 import PriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
 import priorityDropdown from '@/components/Atoms/TodoPriorityDropdown.vue';
+import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
   priority: number;
@@ -38,15 +39,9 @@ export default defineComponent({
     }
   },
   setup(props: Props, context: SetupContext) {
-    const submit = () => {
-      context.emit('click');
-    }
-    const selectPriority = (priority: number) => {
-      context.emit('selectPriority', priority);
-    }
+    const todoModule = TodoModule(context);
     return {
-      submit,
-      selectPriority
+      ...todoModule
     };
   }
 })

@@ -1,18 +1,19 @@
-import { reactive, SetupContext } from "@vue/composition-api";
+import { reactive, SetupContext, computed } from "@vue/composition-api";
 
 interface TodoState {
   //配列の中に入るオブジェクトを定義
-  todos: Array<{ todo: string, progress: boolean}>;
+  todos: Array<{ todo: string, progress: boolean, priority: number}>;
   inputTodo: string;
   priority: number
 }
 
 interface Todo {
   todo: string,
-  progress: boolean
+  progress: boolean,
+  priority: number
 }
 
-export default ( context: SetupContext) => {
+export default (context: SetupContext) => {
   const state = reactive<TodoState>({
     todos: [],
     inputTodo: "",
@@ -21,7 +22,11 @@ export default ( context: SetupContext) => {
 
   function addTodo() {
     if (!state.inputTodo.length) return;
-    const item: Todo = { todo: state.inputTodo, progress: false };
+    const item: Todo = {
+      todo: state.inputTodo,
+      progress: false,
+      priority: state.priority,
+    };
     state.todos.unshift(item);
     state.inputTodo = '';
   }
@@ -40,10 +45,16 @@ export default ( context: SetupContext) => {
     }
   }
 
-  function selectPriority(priority: number) {
-    console.log(priority);
+  function updatePriority(priority: number) {
     state.priority = priority;
   }
+  function selectPriority(priority: number) {
+    context.emit("selectPriority", priority);
+  };
+
+  const filterTodos = computed(() => {
+    return state.todos;
+  });
 
   function changeTodoInput(item: string) {
     context.emit("change", item);
@@ -55,7 +66,9 @@ export default ( context: SetupContext) => {
     setProgress,
     deleteTodo,
     addTodo,
+    updatePriority,
     selectPriority,
+    filterTodos,
     state,
   };
 }

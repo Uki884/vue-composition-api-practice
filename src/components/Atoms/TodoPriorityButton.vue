@@ -1,5 +1,5 @@
 <template>
-  <b-button @click="submit()" :type="color" class="priority__button">
+  <b-button @click="submit()" :type="color" :size="size" :rounded="rounded" class="priority__button">
     {{ text }}
   </b-button>
 </template>
@@ -19,6 +19,8 @@ interface priorityTextObject {
 
 type Props = {
   priority: number;
+  size: string;
+  rounded: boolean;
 };
 
 const priorityText: priorityTextObject = {
@@ -29,7 +31,7 @@ const priorityText: priorityTextObject = {
 };
 
 const priorityColor: priorityTextObject = {
-  0: 'is-light',
+  0: 'is-dark',
   1: 'is-danger',
   2: 'is-warning',
   3: 'is-info'
@@ -40,6 +42,14 @@ export default defineComponent({
     priority: {
       type: Number,
       default: 0
+    },
+    size: {
+      type: String,
+      default: ''
+    },
+    rounded: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props: Props, context: SetupContext) {

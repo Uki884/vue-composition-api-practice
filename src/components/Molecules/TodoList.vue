@@ -3,6 +3,7 @@
     <div class="todo-list__items" v-for="(item, index) in todos" :key="index">
       <BaseCheckBox :value="item.progress" @change="setProgress(index)" type="is-success" />
       <TodoListItem :item="item" @click="setProgress(index)" />
+      <!--<TodoPriorityButton :priority="item.priority" size="is-small" :rounded="true"/>-->
       <BaseIcon icon="window-close" @click="deleteTodo(index)"/>
     </div>
   </div>
@@ -18,6 +19,7 @@ import {
 
 import TodoListItem from '@/components/Atoms/TodoListItem.vue';
 import BaseCheckBox from '@/components/Atoms/BaseCheckBox.vue';
+import TodoPriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
 import BaseIcon from '@/components/Atoms/BaseIcon.vue';
 import TodoModule from '@/modules/Todo/index.ts';
 
@@ -30,7 +32,8 @@ export default defineComponent({
   components: {
     TodoListItem,
     BaseCheckBox,
-    BaseIcon
+    BaseIcon,
+    TodoPriorityButton
   },
   props: {
     todos: {
