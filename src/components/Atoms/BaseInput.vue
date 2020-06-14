@@ -3,7 +3,7 @@
     <span class="common-input__label">
       <slot name="label"></slot>
     </span>
-    <b-input @keydown.native.enter="updateValue($event)" v-model="inputValue" />
+    <b-input @keydown.native.enter="handleClick($event)" v-model="inputValue" />
   </div>
 </template>
 
@@ -28,8 +28,8 @@ export default defineComponent({
   },
   setup(props: Props, context: SetupContext) {
 
-    const updateValue = (e: Event) =>{
-      context.emit('click');
+    const handleClick = async(e: Event) =>{
+      await context.emit('click');
     }
     const inputValue = computed({
       get: () => {
@@ -40,7 +40,7 @@ export default defineComponent({
       }
     });
     return {
-      updateValue,
+      handleClick,
       inputValue
     };
   }
