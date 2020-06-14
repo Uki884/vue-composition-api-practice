@@ -28,7 +28,8 @@ export default defineComponent({
   },
   setup(props: Props, context: SetupContext) {
 
-    const handleClick = async(e: Event) =>{
+    const handleClick = async(e: KeyboardEvent) =>{
+      if (e.keyCode !== 13) return
       await context.emit('click');
     }
     const inputValue = computed({
