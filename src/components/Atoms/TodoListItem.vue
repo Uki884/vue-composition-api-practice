@@ -52,6 +52,7 @@ export default defineComponent({
   text-align: left;
   display: flex;
   justify-content: space-between;
+  word-break: break-all;
 }
 
 .is-done {

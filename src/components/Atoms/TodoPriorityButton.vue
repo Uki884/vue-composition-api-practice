@@ -3,7 +3,14 @@
     <span class="priority__label">
       <slot name="label"></slot>
     </span>
-    <b-button @click="submit()" :type="color" :size="size" :rounded="rounded" :outlined="outlined" class="priority__button" :style="`width :${width}px;`">
+    <b-button @click="submit()"
+      :type="color"
+      :size="size"
+      :rounded="rounded"
+      :outlined="outlined"
+      class="priority__button"
+      :style="`width :${width}px;`"
+    >
       {{ text }}
     </b-button>
   </div>
@@ -27,7 +34,7 @@ type Props = {
   size: string;
   rounded: boolean;
   outlined: boolean;
-  width: string;
+  width: number;
 };
 
 const priorityText: priorityTextObject = {
@@ -55,8 +62,8 @@ export default defineComponent({
       default: ''
     },
     width: {
-      type: String,
-      default: ''
+      type: Number,
+      default: null
     },
     rounded: {
       type: Boolean,
@@ -92,9 +99,9 @@ export default defineComponent({
 .priority{
   &__button {
     margin: 0 2px;
-    // width: 36px !important;
   }
   &__label {
+    font-weight: bold;
     font-size: 10px;
     position: absolute;
     top: -14px;

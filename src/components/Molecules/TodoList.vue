@@ -65,6 +65,7 @@ export default defineComponent({
   &__items{
     cursor: pointer;
     display: flex;
+    align-items: center;
     justify-content: start;
     border-bottom: solid 1px;
     padding: 12px;
