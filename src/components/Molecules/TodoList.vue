@@ -61,6 +61,7 @@ export default defineComponent({
 .todo-list{
     margin-top: 24px;
     padding: 24px;
+    border-radius: 6px;
     background: white;
   &__items{
     cursor: pointer;

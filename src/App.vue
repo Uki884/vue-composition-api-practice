@@ -33,7 +33,8 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
+  height: calc(100vh - 84px);
+  overflow: hidden;
   background: #f9f4ef;
 }
 </style>

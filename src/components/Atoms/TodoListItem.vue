@@ -56,6 +56,6 @@ export default defineComponent({
 }
 
 .is-done {
-    text-decoration: line-through red;
+    text-decoration: line-through;
 }
 </style>
