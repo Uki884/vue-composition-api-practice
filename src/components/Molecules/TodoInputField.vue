@@ -1,6 +1,7 @@
 <template>
   <div class="common-input-fields">
       <BaseInput :value="inputTodo" @change="changeTodoInput" />
+      <TodoPriorityButton priority="3" />
       <BaseButton @click="addTodo" text="追加" />
   </div>
 </template>
@@ -15,6 +16,10 @@ import {
 
 import BaseButton from '@/components/Atoms/BaseButton.vue';
 import BaseInput from '@/components/Atoms/BaseInput.vue';
+import BaseCalendar from '@/components/Atoms/BaseCalendar.vue';
+
+// import TodoPriority from '@/components/Molecules/TodoPriority.vue';
+import TodoPriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
 import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
@@ -22,6 +27,13 @@ type Props = {
 };
 
 export default defineComponent({
+  components: {
+    BaseButton,
+    BaseInput,
+    BaseCalendar,
+    TodoPriorityButton
+    // TodoPriority
+  },
   props: {
     inputTodo: {
       type: String,
@@ -31,10 +43,6 @@ export default defineComponent({
       type: String,
       default: ''
     }
-  },
-  components: {
-    BaseButton,
-    BaseInput
   },
   setup(props: Props, context: SetupContext) {
     const changeTodoInput = (input: String) => {

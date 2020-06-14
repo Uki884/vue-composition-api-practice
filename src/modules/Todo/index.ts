@@ -17,8 +17,8 @@ export default ( context: SetupContext) => {
   });
 
   function addTodo() {
+    if (!state.inputTodo.length) return;
     const item: Todo = { todo: state.inputTodo, progress: false };
-
     state.todos.unshift(item);
     state.inputTodo = '';
   }
@@ -32,7 +32,9 @@ export default ( context: SetupContext) => {
   }
 
   function deleteTodo(index: number) {
-    state.todos.splice(index, 1);
+    if (confirm('タスクを削除しますか？')) {
+      state.todos.splice(index, 1);
+    }
   }
 
   function changeTodoInput(item: string) {

@@ -57,6 +57,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .todo-list{
   &__items{
+    cursor: pointer;
     display: flex;
     justify-content: start;
     border-bottom: solid 1px;

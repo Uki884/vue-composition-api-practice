@@ -15,7 +15,6 @@ import {
 
 import TodoList from '@/components/Molecules/TodoList.vue';
 import TodoInputField from '@/components/Molecules/TodoInputField.vue';
-
 import TodoModule from '@/modules/Todo/index.ts';
 
 interface TodoState {
@@ -28,7 +27,7 @@ export default defineComponent({
     TodoInputField,
     TodoList
   },
-  setup(context: SetupContext) {
+  setup(props, context: SetupContext) {
     const itemModule = TodoModule(context);
     return {
       ...itemModule,
@@ -43,6 +42,7 @@ export default defineComponent({
   padding: 24px;
   margin: 0 auto;
   width: 500px;
+  cursor: pointer;
 }
 
 </style>
