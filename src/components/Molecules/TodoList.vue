@@ -1,9 +1,9 @@
 <template>
-  <div class="todo-list">
+  <div v-if="todos.length" class="todo-list">
     <div class="todo-list__items" v-for="(item, index) in todos" :key="index">
       <BaseCheckBox :value="item.progress" @change="setProgress(index)" type="is-success" />
       <TodoListItem :item="item" @click="setProgress(index)" />
-      <!--<TodoPriorityButton :priority="item.priority" size="is-small" :rounded="true"/>-->
+      <TodoPriorityButton :priority="item.priority" size="is-small" :width="36"  />
       <BaseIcon icon="window-close" @click="deleteTodo(index)"/>
     </div>
   </div>
@@ -59,6 +59,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .todo-list{
+    margin-top: 24px;
+    padding: 24px;
+    background: white;
   &__items{
     cursor: pointer;
     display: flex;

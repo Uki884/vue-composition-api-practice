@@ -1,7 +1,11 @@
 <template>
   <priorityDropdown >
     <template slot="button">
-      <PriorityButton :priority="priority" />
+      <PriorityButton :priority="priority">
+        <template slot="label">
+          優先度
+        </template>
+      </PriorityButton>
     </template>
     <template slot="item">
       <b-dropdown-item aria-role="listitem" @click="selectPriority(0)">なし</b-dropdown-item>

@@ -9,7 +9,7 @@
       label="タスク"
     />
     <TodoList
-      :todos="state.todos"
+      :todos="filterTodos"
       @setProgress="setProgress"
       @deleteTodo="deleteTodo"
     />
