@@ -51,6 +51,7 @@ export default defineComponent({
   width: 100%;
   text-align: left;
   display: flex;
+  padding-right: 12px;
   justify-content: space-between;
   word-break: break-all;
 }

@@ -62,6 +62,12 @@ export default (context: SetupContext) => {
   const filterTodos = computed(() => {
     return state.todos;
   });
+
+  const todosCount = computed(() => {
+    const filterTodos = state.todos.filter((item) => item.progress == false);
+    return filterTodos.length;
+  });
+
   function changeTodoInput(item: string) {
     context.emit("change", item);
   }
@@ -75,6 +81,7 @@ export default (context: SetupContext) => {
     updatePriority,
     selectPriority,
     filterTodos,
+    todosCount,
     state,
   };
 }

@@ -1,5 +1,6 @@
 <template>
   <div v-if="todos.length" class="todo-list">
+    <div class="todo-list__count">合計タスク: {{todosCount}}</div>
     <div class="todo-list__items" v-for="(item, index) in todos" :key="index">
       <BaseCheckBox :value="item.progress" @change="setProgress(index)" type="is-success" />
       <TodoListItem :item="item" @click="setProgress(index)" />
@@ -26,6 +27,7 @@ import TodoModule from '@/modules/Todo/index.ts';
 type Props = {
   label: string;
   value: string;
+  todosCount: number;
 };
 
 export default defineComponent({
@@ -40,6 +42,10 @@ export default defineComponent({
       type: Array,
       default: () => []
     },
+    todosCount: {
+      type: Number,
+      default: 0
+    }
   },
   setup(props: Props, context: SetupContext) {
     const setProgress = (index: number) => {
@@ -63,6 +69,13 @@ export default defineComponent({
     padding: 24px;
     border-radius: 6px;
     background: white;
+    overflow: scroll;
+    height: calc(100vh - 233px);
+  &__count{
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+  }
   &__items{
     cursor: pointer;
     display: flex;

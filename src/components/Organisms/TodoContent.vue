@@ -10,6 +10,7 @@
     />
     <TodoList
       :todos="filterTodos"
+      :todosCount="todosCount"
       @setProgress="setProgress"
       @deleteTodo="deleteTodo"
     />
@@ -53,6 +54,7 @@ export default defineComponent({
   padding: 24px;
   margin: 0 auto;
   width: 500px;
+  height: 100%;
   cursor: pointer;
 }
 
