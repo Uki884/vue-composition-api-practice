@@ -98,7 +98,7 @@ export default defineComponent({
     font-size: 10px;
     position: absolute;
     top: -14px;
-    right: 16px;
+    width: 100%;
   }
 }
 

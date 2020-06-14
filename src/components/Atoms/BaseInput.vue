@@ -1,5 +1,10 @@
 <template>
+  <div class="common-input">
+    <span class="common-input__label">
+      <slot name="label"></slot>
+    </span>
     <b-input v-model="inputValue" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -43,3 +48,17 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.common-input {
+  position: relative;
+  width: 100%;
+  &__label{
+    font-size: 10px;
+    position: absolute;
+    top: -14px;
+    width: 100%;
+    left: 0;
+  }
+}
+</style>

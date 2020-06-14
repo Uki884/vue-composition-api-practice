@@ -1,7 +1,7 @@
 <template>
   <priorityDropdown >
     <template slot="button">
-      <PriorityButton :priority="priority">
+      <PriorityButton :priority="priority" width="55">
         <template slot="label">
           優先度
         </template>

@@ -53,7 +53,8 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
 }
+
 .is-done {
-  text-decoration: line-through;
+    text-decoration: line-through red;
 }
 </style>

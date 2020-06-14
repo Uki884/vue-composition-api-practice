@@ -1,6 +1,10 @@
 <template>
   <div class="common-input-fields">
-      <BaseInput :value="inputTodo" @change="changeTodoInput" />
+      <BaseInput :value="inputTodo" @change="changeTodoInput">
+        <template slot="label">
+          タスク名
+        </template>
+      </BaseInput>
       <TodoPriority :priority="priority" @selectPriority="selectPriority" />
       <BaseButton @click="addTodo" text="追加" />
   </div>
