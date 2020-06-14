@@ -1,12 +1,10 @@
 <template>
   <div class="common-input-fields">
       <TodoPriority :priority="priority" @selectPriority="selectPriority" />
-      <BaseInput :value="inputTodo" @change="changeTodoInput" @click="addTodo">
-        <template slot="label">
-          タスク名
-        </template>
+      <BaseInput :value="inputTodo" @change="changeTodoInput" @click="emitTodo">
+        <template slot="label">タスク名</template>
       </BaseInput>
-      <BaseButton @click="addTodo" text="追加" />
+      <BaseButton @click="emitTodo" text="追加" />
   </div>
 </template>
 
@@ -53,12 +51,12 @@ export default defineComponent({
   },
   setup(props: Props, context: SetupContext) {
     const todoModule = TodoModule(context);
-    const addTodo = ()=> {
+    const emitTodo = ()=> {
         context.emit('addTodo');
     };
     return {
       ...todoModule,
-      addTodo
+      emitTodo
     };
   }
 })
