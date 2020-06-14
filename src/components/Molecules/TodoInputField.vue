@@ -1,7 +1,7 @@
 <template>
   <div class="common-input-fields">
       <BaseInput :value="inputTodo" @change="changeTodoInput" />
-      <TodoPriority :priority="3" />
+      <TodoPriority :priority="priority" @selectPriority="selectPriority" />
       <BaseButton @click="addTodo" text="追加" />
   </div>
 </template>
@@ -19,11 +19,11 @@ import BaseInput from '@/components/Atoms/BaseInput.vue';
 import BaseCalendar from '@/components/Atoms/BaseCalendar.vue';
 
 import TodoPriority from '@/components/Molecules/TodoPriority.vue';
-import TodoPriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
 import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
   inputTodo: string;
+  priority: number
 };
 
 export default defineComponent({
@@ -31,7 +31,6 @@ export default defineComponent({
     BaseButton,
     BaseInput,
     BaseCalendar,
-    TodoPriorityButton,
     TodoPriority
   },
   props: {
@@ -39,21 +38,29 @@ export default defineComponent({
       type: String,
       default: ''
     },
+    priority: {
+      type: Number,
+      default: 0
+    },
     label: {
       type: String,
       default: ''
     }
   },
   setup(props: Props, context: SetupContext) {
-    const changeTodoInput = (input: String) => {
+    const changeTodoInput = (input: string) => {
       context.emit('change', input);
     };
+    const selectPriority = (priority: number) => {
+      context.emit('selectPriority', priority);
+    }
     const addTodo = ()=> {
         context.emit('addTodo');
     };
     return {
       changeTodoInput,
-      addTodo
+      addTodo,
+      selectPriority
     };
   }
 })

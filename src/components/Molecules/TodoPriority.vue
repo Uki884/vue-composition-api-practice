@@ -1,11 +1,15 @@
 <template>
-  <b-dropdown hoverable aria-role="list">
-      <PriorityButton :priority="2" slot="trigger" />
-      <b-dropdown-item aria-role="listitem" @click.native="selectPriority(0)">なし</b-dropdown-item>
-      <b-dropdown-item aria-role="listitem" @click.native="selectPriority(1)">高</b-dropdown-item>
-      <b-dropdown-item aria-role="listitem" @click.native="selectPriority(2)">中</b-dropdown-item>
-      <b-dropdown-item aria-role="listitem" @click.native="selectPriority(3)">低</b-dropdown-item>
-  </b-dropdown>
+  <priorityDropdown >
+    <template slot="button">
+      <PriorityButton :priority="priority" />
+    </template>
+    <template slot="item">
+      <b-dropdown-item aria-role="listitem" @click="selectPriority(0)">なし</b-dropdown-item>
+      <b-dropdown-item aria-role="listitem" @click="selectPriority(1)">高</b-dropdown-item>
+      <b-dropdown-item aria-role="listitem" @click="selectPriority(2)">中</b-dropdown-item>
+      <b-dropdown-item aria-role="listitem" @click="selectPriority(3)">低</b-dropdown-item>
+    </template>
+  </priorityDropdown>
 </template>
 
 <script lang="ts">
@@ -16,6 +20,7 @@ import {
   computed
 } from "@vue/composition-api";
 import PriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
+import priorityDropdown from '@/components/Atoms/TodoPriorityDropdown.vue';
 
 type Props = {
   priority: number;
@@ -23,7 +28,8 @@ type Props = {
 
 export default defineComponent({
   components: {
-    PriorityButton
+    PriorityButton,
+    priorityDropdown
   },
   props: {
     priority: {
@@ -32,15 +38,20 @@ export default defineComponent({
     }
   },
   setup(props: Props, context: SetupContext) {
-    const submit = () =>{
+    const submit = () => {
       context.emit('click');
+    }
+    const selectPriority = (priority: number) => {
+      context.emit('selectPriority', priority);
     }
     return {
       submit,
+      selectPriority
     };
   }
 })
 </script>
 
 <style scoped lang="scss">
+
 </style>
