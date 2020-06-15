@@ -15,6 +15,7 @@ import {
 type Props = {
   size: string;
   text: string;
+  dropdownList: any[];
 };
 
 export default defineComponent({
@@ -26,10 +27,14 @@ export default defineComponent({
     text: {
       type: String,
       default: ''
+    },
+    dropdownList: {
+      type: Array,
+      default: () => [] 
     }
   },
   setup(props: Props, context: SetupContext) {
-    const submit = () =>{
+    const submit = (status: number) =>{
       context.emit('click');
     }
     return {

@@ -4,7 +4,7 @@ interface TodoState {
   //配列の中に入るオブジェクトを定義
   todos: Array<{ todo: string, progress: boolean, priority: number}>;
   inputTodo: string;
-  priority: number
+  priority: number,
 }
 
 interface Todo {
@@ -72,6 +72,13 @@ export default (context: SetupContext) => {
     context.emit("change", item);
   }
 
+  const priorityDropdownList = [ 
+    { text: 'なし', status: 0 },
+    { text: '高', status: 1 },
+    { text: '中', status: 2 },
+    { text: '低', status: 3 }
+]; 
+
   return {
     setInputTodo,
     changeTodoInput,
@@ -83,5 +90,6 @@ export default (context: SetupContext) => {
     filterTodos,
     todosCount,
     state,
+    priorityDropdownList
   };
 }

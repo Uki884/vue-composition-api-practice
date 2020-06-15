@@ -1,8 +1,10 @@
 <template>
   <div class="common-input-fields">
-      <TodoPriority :priority="priority" @selectPriority="selectPriority" />
+      <TodoPriorityDropDown :priority="priority" :dropdownList="priorityDropdownList" @click="selectPriority" />
       <BaseInput :value="inputTodo" @change="changeTodoInput" @click="emitTodo">
-        <template slot="label">タスク名</template>
+        <template slot="label">
+          タスク名
+        </template>
       </BaseInput>
       <BaseButton @click="emitTodo" text="追加" />
   </div>
@@ -19,8 +21,7 @@ import {
 import BaseButton from '@/components/Atoms/BaseButton.vue';
 import BaseInput from '@/components/Atoms/BaseInput.vue';
 import BaseCalendar from '@/components/Atoms/BaseCalendar.vue';
-
-import TodoPriority from '@/components/Molecules/TodoPriority.vue';
+import TodoPriorityDropDown from '@/components/Molecules/TodoPriorityDropdown.vue';
 import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
@@ -33,7 +34,7 @@ export default defineComponent({
     BaseButton,
     BaseInput,
     BaseCalendar,
-    TodoPriority
+    TodoPriorityDropDown
   },
   props: {
     inputTodo: {
