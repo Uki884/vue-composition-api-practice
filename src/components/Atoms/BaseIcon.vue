@@ -22,8 +22,6 @@ export default defineComponent({
     }
   },
   setup(props: Props, context: SetupContext) {
-    props.icon; //string型として型推論される
-    console.log(props);
     const submit = () =>{
       context.emit('click');
     }

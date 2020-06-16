@@ -21,8 +21,8 @@ import {
 import BaseButton from '@/components/Atoms/BaseButton.vue';
 import BaseInput from '@/components/Atoms/BaseInput.vue';
 import BaseCalendar from '@/components/Atoms/BaseCalendar.vue';
-import TodoPriorityDropDown from '@/components/Molecules/TodoPriorityDropdown.vue';
-import TodoModule from '@/modules/Todo/index.ts';
+import TodoPriorityDropDown from '@/components/Atoms/TodoPriorityDropdown.vue';
+import useTodo from '@/modules/Todo/index.ts';
 
 type Props = {
   inputTodo: string;
@@ -51,12 +51,11 @@ export default defineComponent({
     }
   },
   setup(props: Props, context: SetupContext) {
-    const todoModule = TodoModule(context);
     const emitTodo = ()=> {
         context.emit('addTodo');
     };
     return {
-      ...todoModule,
+      ...useTodo(context),
       emitTodo
     };
   }

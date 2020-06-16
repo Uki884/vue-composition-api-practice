@@ -22,7 +22,6 @@ import TodoListItem from '@/components/Atoms/TodoListItem.vue';
 import BaseCheckBox from '@/components/Atoms/BaseCheckBox.vue';
 import TodoPriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
 import BaseIcon from '@/components/Atoms/BaseIcon.vue';
-import TodoModule from '@/modules/Todo/index.ts';
 
 type Props = {
   label: string;

@@ -27,7 +27,7 @@ import {
 
 import TodoList from '@/components/Molecules/TodoList.vue';
 import TodoInputField from '@/components/Molecules/TodoInputField.vue';
-import TodoModule from '@/modules/Todo/index.ts';
+import useTodo from '@/modules/Todo/index.ts';
 
 interface TodoState {
   todos: string[];
@@ -40,9 +40,8 @@ export default defineComponent({
     TodoList
   },
   setup(props, context: SetupContext) {
-    const todoModule = TodoModule(context);
     return {
-      ...todoModule,
+      ...useTodo(context),
     };
   }
 })
