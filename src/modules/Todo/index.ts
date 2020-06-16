@@ -21,7 +21,7 @@ export default (context: SetupContext) => {
   });
 
   //タスク追加
-  function addTodo() {
+  const addTodo = () => {
     if (!state.inputTodo.length) return;
     const item: Todo = {
       todo: state.inputTodo,
@@ -32,30 +32,30 @@ export default (context: SetupContext) => {
     clearInput();
   }
   //タスク名input
-  function setInputTodo(item: string) {
+  const setInputTodo = (item: string) => {
     state.inputTodo = item;
   };
 
-  function clearInput() {
+  const clearInput = () => {
     state.inputTodo = '';
   }
 
   //完了ボタン
-  function setProgress(index: number) {
+  const setProgress = (index: number) => {
     state.todos[index].progress = !state.todos[index].progress;
   }
   //タスク削除
-  function deleteTodo(index: number) {
+  const deleteTodo = (index: number) => {
     if (confirm('タスクを削除しますか？')) {
       state.todos.splice(index, 1);
     }
   }
   //優先度更新
-  function updatePriority(priority: number) {
+  const updatePriority = (priority: number) => {
     state.priority = priority;
   }
   //親コンポーネントへpriorityを渡す
-  function selectPriority(priority: number) {
+  const selectPriority = (priority: number) => {
     context.emit("selectPriority", priority);
   };
   //TODO タスクを優先度別にフィルターする
@@ -68,7 +68,7 @@ export default (context: SetupContext) => {
     return filterTodos.length;
   });
 
-  function changeTodoInput(item: string) {
+  const changeTodoInput = (item: string) => {
     context.emit("change", item);
   }
 
@@ -77,7 +77,7 @@ export default (context: SetupContext) => {
     { text: '高', status: 1 },
     { text: '中', status: 2 },
     { text: '低', status: 3 }
-]; 
+  ];
 
   return {
     setInputTodo,
