@@ -38,6 +38,7 @@ export default (context: SetupContext) => {
 
   const clearInput = () => {
     state.inputTodo = '';
+    state.priority = 0;
   }
 
   //完了ボタン
