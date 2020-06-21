@@ -2,7 +2,7 @@ import { reactive, SetupContext, computed } from "@vue/composition-api";
 
 
 const tabList = [
-  { text: "タスク", id: 0 },
+  { text: "未完了", id: 0 },
   { text: "完了済み", id: 1 },
 ];
 
@@ -67,7 +67,7 @@ export default (context: SetupContext) => {
   };
   //TODO タスクを優先度別にフィルターする
   const filterTodos = computed(() => {
-    return state.todos;
+    return state.todos.filter((item) => item.progress == false);
   });
 
   const todosCount = computed(() => {
