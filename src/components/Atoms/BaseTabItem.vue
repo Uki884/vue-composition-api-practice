@@ -1,5 +1,5 @@
 <template>
-  <button class="tab__item" @click="updateValue(id)" :class="currentTab === id ? 'selected' : null">
+  <button class="tab__item" @click="updateValue(id)" :class="currentTab === id ? 'selected' : null" :style="`width:${tabWidth}%;`">
     {{ text }}
   </button>
 </template>
@@ -9,6 +9,7 @@ import {
   defineComponent,
   reactive,
   SetupContext,
+  computed
 } from "@vue/composition-api";
 
 type Props = {
@@ -16,6 +17,7 @@ type Props = {
   selected: Boolean;
   currentTab: number;
   id: number;
+  itemCount: number;
 };
 
 export default defineComponent({
@@ -33,14 +35,23 @@ export default defineComponent({
     currentTab: {
       type: Number,
       default: 0
+    },
+    itemCount: {
+      type: Number,
+      default: null
     }
   },
   setup(props: Props, context: SetupContext) {
     const updateValue = (id: number) => {
       context.emit('input', id);
     }
+    const tabWidth = computed(() =>{
+        return 100 / props.itemCount
+    });
+    console.log(tabWidth);
     return {
-      updateValue
+      updateValue,
+      tabWidth
     };
   }
 })
@@ -48,7 +59,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .tab {
-    height: 50px;
+    // height: 50px;
     &__item {
       cursor: pointer;
       padding: 12px;

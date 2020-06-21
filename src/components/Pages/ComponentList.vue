@@ -81,7 +81,7 @@
         <div class="component-list__item__head">
           <span>Tab</span>
         </div>
-        <BaseTabItems :tabList="tabList" />
+        <BaseTab :tabList="tabList" />
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@ import BaseCheckBox from '@/components/Atoms/BaseCheckBox.vue';
 import BaseDropdown from '@/components/Atoms/BaseDropdown.vue';
 import BaseCalndar from '@/components/Atoms/BaseCalendar.vue';
 import BaseTabItem from '@/components/Atoms/BaseTabItem.vue';
-import BaseTabItems from '@/components/Molecules/BaseTabItems.vue';
+import BaseTab from '@/components/Molecules/BaseTab.vue';
 
 type Props = {
   size: string;
@@ -116,7 +116,7 @@ export default defineComponent({
     BaseDropdown,
     BaseCalndar,
     BaseTabItem,
-    BaseTabItems
+    BaseTab
   },
   props: {
     size: {

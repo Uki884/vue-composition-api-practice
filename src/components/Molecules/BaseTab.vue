@@ -1,7 +1,14 @@
 <template>
   <div class="tab">
     <div class="tab__items">
-      <BaseTabItem v-for="(tab, index) in tabList" v-model="state.currentTab" :currentTab="state.currentTab" :key="index" :text="tab.text" :id="tab.id" />
+      <BaseTabItem v-for="(tab, index) in tabList"
+        v-model="state.currentTab"
+        :currentTab="state.currentTab"
+        :key="index"
+        :text="tab.text"
+        :id="tab.id"
+        :itemCount="tabList.length"
+      />
     </div>
   </div>
 </template>
@@ -47,9 +54,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .tab {
-    height: 50px;
     &__items {
       display: flex;
+      margin-top: 24px;
     }
     .selected {
       background: #5ab4bd;

@@ -8,6 +8,7 @@
       :priority="state.priority"
       label="タスク"
     />
+    <BaseTab v-if="filterTodos.length" :tabList="tabList" />
     <TodoList
       :todos="filterTodos"
       :todosCount="todosCount"
@@ -27,6 +28,7 @@ import {
 
 import TodoList from '@/components/Molecules/Todo/TodoList.vue';
 import TodoInputField from '@/components/Molecules/Todo/TodoInputField.vue';
+import BaseTab from '@/components/Molecules/BaseTab.vue';
 import useTodo from '@/modules/Todo/index.ts';
 
 interface TodoState {
@@ -37,7 +39,8 @@ interface TodoState {
 export default defineComponent({
   components: {
     TodoInputField,
-    TodoList
+    TodoList,
+    BaseTab
   },
   setup(props, context: SetupContext) {
     return {

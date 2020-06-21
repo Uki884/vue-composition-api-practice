@@ -1,5 +1,11 @@
 import { reactive, SetupContext, computed } from "@vue/composition-api";
 
+
+const tabList = [
+  { text: "タスク", id: 0 },
+  { text: "完了済み", id: 1 },
+];
+
 interface TodoState {
   //配列の中に入るオブジェクトを定義
   todos: Array<{ todo: string, progress: boolean, priority: number}>;
@@ -91,6 +97,7 @@ export default (context: SetupContext) => {
     filterTodos,
     todosCount,
     state,
-    priorityDropdownList
+    priorityDropdownList,
+    tabList,
   };
 }
