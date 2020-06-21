@@ -1,8 +1,11 @@
 <template>
   <b-navbar type="is-dark" :fixed-top="true" :spaced="true">
     <template slot="start">
-        <b-navbar-item href="#">
+        <b-navbar-item tag="router-link" :to="{ path: '/' }">
             SimpleToDo
+        </b-navbar-item>
+        <b-navbar-item tag="router-link" :to="{ path: '/component_list' }">
+            ComponentsList
         </b-navbar-item>
     </template>
   </b-navbar>
