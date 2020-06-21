@@ -1,5 +1,5 @@
 <template>
-  <b-checkbox v-model="inputValue" @click="submit()" :type="type" />
+  <b-checkbox v-model="inputValue" @click="submit()" :type="checkBoxColor" />
 </template>
 
 <script lang="ts">
@@ -9,10 +9,21 @@ import {
   computed
 } from "@vue/composition-api";
 
+interface textObject {
+    [key: string]: any;
+}
+
+const color: textObject = {
+  black: 'is-dark',
+  red: 'is-danger',
+  yellow: 'is-warning',
+  blue: 'is-info',
+  green: 'is-success'
+};
 
 type Props = {
   value: boolean;
-  type: string
+  color: string
 };
 
 export default defineComponent({
@@ -21,18 +32,23 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    type: {
+    color: {
       type: String,
       default: ''
     }
   },
   setup(props: Props, context: SetupContext) {
     props.value;
-    props.type;
+    props.color;
 
     const updateValue = (e: Event) =>{
       context.emit('change', (e.target as HTMLInputElement).value);
     }
+
+    const checkBoxColor = computed(()=> {
+      const key = props.color;
+      return color[key];
+    });
 
     const inputValue = computed({
       get: () => {
@@ -45,7 +61,8 @@ export default defineComponent({
 
     return {
       updateValue,
-      inputValue
+      inputValue,
+      checkBoxColor
     };
   }
 })

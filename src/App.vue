@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <MainContent />
+    <router-view />
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: calc(100vh - 84px);
+  height: calc(100vh - 52px);
   overflow: hidden;
   background: #f9f4ef;
 }

@@ -1,15 +1,22 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import App from '@/App.vue';
+import MainContent from "@/components/Pages/MainContent.vue";
+import ComponentList from "@/components/Pages/ComponentList.vue";
 
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'App',
-    component: App,
+    name: 'MainContent',
+    component: MainContent,
+  },
+  {
+    path: '/component_list',
+    name: 'componentList',
+    component: ComponentList
   }
+
 ];
 
 const router = new VueRouter({

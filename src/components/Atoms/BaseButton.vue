@@ -1,20 +1,34 @@
 <template>
-  <b-button :size="size" @click="submit()">{{text}}</b-button>
+  <b-button :size="size" :type="buttonColor" @click="submit()">{{text}}</b-button>
 </template>
 
 <script lang="ts">
 import {
   defineComponent,
   reactive,
-  SetupContext
+  SetupContext,
+  computed
 } from "@vue/composition-api";
 
 
 type Props = {
   size: string;
   text: string;
+  color: string;
 };
 
+
+interface textObject {
+    [key: string]: any;
+}
+
+const color: textObject = {
+  black: 'is-dark',
+  red: 'is-danger',
+  yellow: 'is-warning',
+  blue: 'is-info',
+  green: 'is-success'
+};
 
 export default defineComponent({
   props: {
@@ -25,6 +39,10 @@ export default defineComponent({
     text: {
       type: String,
       default: ''
+    },
+    color: {
+      type: String,
+      default: ''
     }
   },
   setup(props: Props, context: SetupContext) {
@@ -33,8 +51,13 @@ export default defineComponent({
     const submit = () =>{
       context.emit('click');
     }
+    const buttonColor = computed(()=> {
+      const key = props.color;
+      return color[key];
+    });
     return {
-      submit
+      submit,
+      buttonColor
     };
   }
 })

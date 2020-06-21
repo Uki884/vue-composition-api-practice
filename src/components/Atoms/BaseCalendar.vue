@@ -1,5 +1,6 @@
 <template>
-  <Datepicker :format="state.DatePickerFormat" :language="state.ja" :calendar-button="true"></Datepicker>
+  <Datepicker v-model="state.date" :format="state.DatePickerFormat" :language="state.ja">
+  </Datepicker>
 </template>
 
 <script lang="ts">
@@ -30,11 +31,11 @@ export default defineComponent({
   },
   setup(props: Props, context: SetupContext) {
     const state = reactive({
-        date: dayjs().format('yyyy-MM-dd'),
+        date: dayjs().format('YYYY-MM-DD'),
         DatePickerFormat: 'yyyy-MM-dd',
-        ja: ja
+        ja: ja,
     });
-    console.log(state);
+    console.log('date', state, dayjs().format('YYYY-MM-DD'));
     const submit = () =>{
       context.emit('click');
     }
