@@ -21,7 +21,7 @@ import {
 import BaseButton from '@/components/Atoms/BaseButton.vue';
 import BaseInput from '@/components/Atoms/BaseInput.vue';
 import BaseCalendar from '@/components/Atoms/BaseCalendar.vue';
-import TodoPriorityDropDown from '@/components/Atoms/TodoPriorityDropdown.vue';
+import TodoPriorityDropDown from '@/components/Atoms/Todo/TodoPriorityDropdown.vue';
 import useTodo from '@/modules/Todo/index.ts';
 
 type Props = {

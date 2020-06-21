@@ -25,8 +25,8 @@ import {
   SetupContext
 } from "@vue/composition-api";
 
-import TodoList from '@/components/Molecules/TodoList.vue';
-import TodoInputField from '@/components/Molecules/TodoInputField.vue';
+import TodoList from '@/components/Molecules/Todo/TodoList.vue';
+import TodoInputField from '@/components/Molecules/Todo/TodoInputField.vue';
 import useTodo from '@/modules/Todo/index.ts';
 
 interface TodoState {

@@ -18,9 +18,9 @@ import {
   SetupContext
 } from "@vue/composition-api";
 
-import TodoListItem from '@/components/Atoms/TodoListItem.vue';
+import TodoListItem from '@/components/Atoms/Todo/TodoListItem.vue';
 import BaseCheckBox from '@/components/Atoms/BaseCheckBox.vue';
-import TodoPriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
+import TodoPriorityButton from '@/components/Atoms/Todo/TodoPriorityButton.vue';
 import BaseIcon from '@/components/Atoms/BaseIcon.vue';
 
 type Props = {

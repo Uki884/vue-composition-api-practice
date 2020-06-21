@@ -18,7 +18,7 @@ import {
   SetupContext
 } from "@vue/composition-api";
 
-import PriorityButton from '@/components/Atoms/TodoPriorityButton.vue';
+import PriorityButton from '@/components/Atoms/Todo/TodoPriorityButton.vue';
 
 type Props = {
   size: string;
