@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vue/composition-api": "^0.6.3",
+    "@vueuse/core": "^2.0.34",
     "buefy": "^0.8.20",
     "dayjs": "^1.8.28",
     "v-calendar": "^1.0.6",

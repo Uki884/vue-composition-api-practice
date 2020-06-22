@@ -1,5 +1,5 @@
 import { reactive, SetupContext, computed } from "@vue/composition-api";
-
+import { useStorage } from '@vueuse/core'
 
 const tabList = [
   { text: "未完了", id: 0 },
@@ -20,7 +20,8 @@ interface Todo {
 }
 
 export default (context: SetupContext) => {
-  const state = reactive<TodoState>({
+  const state = useStorage<TodoState>( 'storage',
+    {
     todos: [],
     inputTodo: "",
     priority: 0
@@ -28,38 +29,38 @@ export default (context: SetupContext) => {
 
   //タスク追加
   const addTodo = () => {
-    if (!state.inputTodo.length) return;
+    if (!state.value.inputTodo.length) return;
     const item: Todo = {
-      todo: state.inputTodo,
+      todo: state.value.inputTodo,
       progress: false,
-      priority: state.priority,
+      priority: state.value.priority,
     };
-    state.todos.unshift(item);
+    state.value.todos.unshift(item);
     clearInput();
   }
   //タスク名input
   const setInputTodo = (item: string) => {
-    state.inputTodo = item;
+    state.value.inputTodo = item;
   };
 
   const clearInput = () => {
-    state.inputTodo = '';
-    state.priority = 0;
+    state.value.inputTodo = '';
+    state.value.priority = 0;
   }
 
   //完了ボタン
   const setProgress = (index: number) => {
-    state.todos[index].progress = !state.todos[index].progress;
+    state.value.todos[index].progress = !state.value.todos[index].progress;
   }
   //タスク削除
   const deleteTodo = (index: number) => {
     if (confirm('タスクを削除しますか？')) {
-      state.todos.splice(index, 1);
+      state.value.todos.splice(index, 1);
     }
   }
   //優先度更新
   const updatePriority = (priority: number) => {
-    state.priority = priority;
+    state.value.priority = priority;
   }
   //親コンポーネントへpriorityを渡す
   const selectPriority = (priority: number) => {
@@ -67,11 +68,11 @@ export default (context: SetupContext) => {
   };
   //TODO タスクを優先度別にフィルターする
   const filterTodos = computed(() => {
-    return state.todos.filter((item) => item.progress == false);
+    return state.value.todos.filter((item) => item.progress == false);
   });
 
   const todosCount = computed(() => {
-    const filterTodos = state.todos.filter((item) => item.progress == false);
+    const filterTodos = state.value.todos.filter((item) => item.progress == false);
     return filterTodos.length;
   });
 
