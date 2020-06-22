@@ -6,9 +6,18 @@ const tabList = [
   { text: "完了済み", id: 1 },
 ];
 
+
+const priorityDropdownList = [ 
+  { text: 'なし', status: 0 },
+  { text: '高', status: 1 },
+  { text: '中', status: 2 },
+  { text: '低', status: 3 }
+];
+
 interface TodoState {
   //配列の中に入るオブジェクトを定義
   todos: Array<{ todo: string, progress: boolean, priority: number}>;
+  complatedTodos: Array<{ todo: string, progress: boolean, priority: number}>;
   inputTodo: string;
   priority: number,
 }
@@ -20,9 +29,10 @@ interface Todo {
 }
 
 export default (context: SetupContext) => {
-  const state = useStorage<TodoState>( 'storage',
-    {
+  const state = useStorage<TodoState>(
+    'Todos',{
     todos: [],
+    complatedTodos: [],
     inputTodo: "",
     priority: 0
   });
@@ -50,7 +60,10 @@ export default (context: SetupContext) => {
 
   //完了ボタン
   const setProgress = (index: number) => {
-    state.value.todos[index].progress = !state.value.todos[index].progress;
+    console.log(index);
+    // state.todos[index].progress = !state.todos[index].progress;
+    state.value.complatedTodos.push(state.value.todos[index]);
+    state.value.todos.splice(index, 1);
   }
   //タスク削除
   const deleteTodo = (index: number) => {
@@ -79,13 +92,6 @@ export default (context: SetupContext) => {
   const changeTodoInput = (item: string) => {
     context.emit("change", item);
   }
-
-  const priorityDropdownList = [ 
-    { text: 'なし', status: 0 },
-    { text: '高', status: 1 },
-    { text: '中', status: 2 },
-    { text: '低', status: 3 }
-  ];
 
   return {
     setInputTodo,
