@@ -8,7 +8,7 @@
       :priority="state.priority"
       label="タスク"
     />
-    <BaseTab v-if="filterTodos.length" :tabList="tabList" />
+    <BaseTab :tabList="tabList" />
     <TodoList
       :todos="filterTodos"
       :todosCount="todosCount"

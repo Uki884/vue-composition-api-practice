@@ -90,7 +90,6 @@ export default defineComponent({
     padding: 12px;
   }
   &__empty {
-    margin-top: 24px;
     font-size: 16px;
   }
 }
