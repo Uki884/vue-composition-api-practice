@@ -1,9 +1,9 @@
 <template>
   <div v-if="todos.length" class="todo-list">
-    <div class="todo-list__count">合計タスク: {{todosCount}}</div>
+    <div class="todo-list__count" v-if="currentTab === 0">合計タスク: {{todosCount}}</div>
     <div class="todo-list__items__wrapper">
       <div class="todo-list__items" v-for="(item, index) in todos" :key="index">
-        <BaseCheckBox :value="item.progress" @change="setProgress(index)" color="green" />
+        <BaseCheckBox v-if="currentTab === 0" :value="item.progress" @change="setProgress(index)" color="green" />
         <TodoListItem :item="item" @click="setProgress(index)" />
         <TodoPriorityButton :priority="item.priority" size="is-small" :width="36" />
         <BaseIcon icon="window-close" @click="deleteTodo(index)"/>
@@ -33,6 +33,7 @@ type Props = {
   label: string;
   value: string;
   todosCount: number;
+  currentTab: number;
 };
 
 export default defineComponent({
@@ -48,6 +49,10 @@ export default defineComponent({
       default: () => []
     },
     todosCount: {
+      type: Number,
+      default: 0
+    },
+    currentTab: {
       type: Number,
       default: 0
     }

@@ -19,7 +19,8 @@ interface TodoState {
   todos: Array<{ todo: string, progress: boolean, priority: number}>;
   complatedTodos: Array<{ todo: string, progress: boolean, priority: number}>;
   inputTodo: string;
-  priority: number,
+  priority: number;
+  currentTab: number;
 }
 
 interface Todo {
@@ -34,7 +35,8 @@ export default (context: SetupContext) => {
     todos: [],
     complatedTodos: [],
     inputTodo: "",
-    priority: 0
+    priority: 0,
+    currentTab: 0,
   });
 
   //タスク追加
@@ -83,6 +85,10 @@ export default (context: SetupContext) => {
   const filterTodos = computed(() => {
     return state.value.todos.filter((item) => item.progress == false);
   });
+  //　完了済みタスク
+  const complatedTodos = computed(() => {
+    return state.value.complatedTodos;
+  });  
 
   const todosCount = computed(() => {
     const filterTodos = state.value.todos.filter((item) => item.progress == false);
@@ -102,6 +108,7 @@ export default (context: SetupContext) => {
     updatePriority,
     selectPriority,
     filterTodos,
+    complatedTodos,
     todosCount,
     state,
     priorityDropdownList,

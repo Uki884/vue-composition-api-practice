@@ -2,8 +2,8 @@
   <div class="tab">
     <div class="tab__items">
       <BaseTabItem v-for="(tab, index) in tabList"
-        v-model="state.currentTab"
-        :currentTab="state.currentTab"
+        v-model="inputValue"
+        :currentTab="inputValue"
         :key="index"
         :text="tab.text"
         :id="tab.id"
@@ -17,13 +17,16 @@
 import {
   defineComponent,
   reactive,
-  SetupContext
+  SetupContext,
+  computed
 } from "@vue/composition-api";
 
 import BaseTabItem from '@/components/Atoms/BaseTabItem.vue';
 
 type Props = {
   size: string;
+  currentTab: number;
+  value: number;
 };
 
 interface State {
@@ -39,15 +42,25 @@ export default defineComponent({
       type: Array,
       default: () => []
     },
+    value: {
+      type: Number,
+      default: 0
+    },
+    currentTab: {
+      type: Number,
+      default: 0
+    }
   },
   setup(props: Props, context: SetupContext) {
-
-    const state = reactive<State>({
-      currentTab: 0,
+      const inputValue = computed({
+      get: () => {
+        return props.value
+      },
+      set: (val) => {
+        context.emit('input', val)
+      }
     });
-    return {
-      state,
-    };
+    return {inputValue}
   }
 })
 </script>
@@ -57,6 +70,7 @@ export default defineComponent({
     &__items {
       display: flex;
       margin-top: 24px;
+      border-bottom: solid 1px;
     }
     .selected {
       background: #5ab4bd;

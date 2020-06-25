@@ -8,9 +8,10 @@
       :priority="state.priority"
       label="タスク"
     />
-    <BaseTab :tabList="tabList" />
+    <BaseTab v-model="state.currentTab" :value="state.currentTab" :tabList="tabList" />
     <TodoList
-      :todos="filterTodos"
+      :todos="state.currentTab === 0 ? filterTodos : complatedTodos"
+      :currentTab="state.currentTab"
       :todosCount="todosCount"
       @setProgress="setProgress"
       @deleteTodo="deleteTodo"
