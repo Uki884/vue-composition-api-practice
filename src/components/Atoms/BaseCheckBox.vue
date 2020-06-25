@@ -84,6 +84,9 @@ export default defineComponent({
       width: 18px;
       height: 18px;
       border-radius: 50%;
+      &:hover {
+        box-shadow: 0 0 0 1px #00b1f4;
+      }
     }
 
     .checked {
