@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-list__item" @click.stop="setProgress" :class="isDone ? 'is-done': null">
+    <div class="todo-list__item" :class="isDone ? 'is-done': null">
       {{item.todo}}
     </div>
 </template>

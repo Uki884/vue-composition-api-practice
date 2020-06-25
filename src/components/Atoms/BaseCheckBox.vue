@@ -1,5 +1,7 @@
 <template>
-  <b-checkbox v-model="inputValue" @click="submit()" :type="checkBoxColor" />
+  <!-- <b-checkbox v-model="inputValue" @click="submit()" :type="checkBoxColor" /> -->
+  <div class="checkbox" @click.stop="updateValue()" :class="value ? 'checked' : 'unchecked'">
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,7 +25,8 @@ const color: textObject = {
 
 type Props = {
   value: boolean;
-  color: string
+  color: string;
+  index: number;
 };
 
 export default defineComponent({
@@ -35,6 +38,10 @@ export default defineComponent({
     color: {
       type: String,
       default: ''
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   setup(props: Props, context: SetupContext) {
@@ -42,7 +49,7 @@ export default defineComponent({
     props.color;
 
     const updateValue = (e: Event) =>{
-      context.emit('change', (e.target as HTMLInputElement).value);
+      context.emit('change', props.index, !props.value);
     }
 
     const checkBoxColor = computed(()=> {
@@ -67,3 +74,20 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+    .checkbox {
+      border: solid 3px white;
+      box-shadow: 0 0 0 1px gray;
+      margin-right: 6px;
+      width: 22px;
+      height: 18px;
+      border-radius: 50%;
+    }
+
+    .checked {
+      background: #00b1f4;
+      box-shadow: 0 0 0 1px #00b1f4;
+    }
+    
+</style>

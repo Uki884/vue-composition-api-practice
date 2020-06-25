@@ -17,7 +17,6 @@ const priorityDropdownList = [
 interface TodoState {
   //配列の中に入るオブジェクトを定義
   todos: Array<{ todo: string, progress: boolean, priority: number}>;
-  complatedTodos: Array<{ todo: string, progress: boolean, priority: number}>;
   inputTodo: string;
   priority: number;
   currentTab: number;
@@ -33,7 +32,6 @@ export default (context: SetupContext) => {
   const state = useStorage<TodoState>(
     'Todos',{
     todos: [],
-    complatedTodos: [],
     inputTodo: "",
     priority: 0,
     currentTab: 0,
@@ -61,16 +59,13 @@ export default (context: SetupContext) => {
   }
 
   //完了ボタン
-  const setProgress = (index: number) => {
-    console.log(index);
-    // state.todos[index].progress = !state.todos[index].progress;
-    state.value.complatedTodos.push(state.value.todos[index]);
-    state.value.todos.splice(index, 1);
+  const setProgress = (index: number, status: boolean) => {
+    state.value.todos[index].progress = status;
   }
   //タスク削除
   const deleteTodo = (index: number) => {
     if (confirm('タスクを削除しますか？')) {
-      state.value.todos.splice(index, 1);
+        state.value.todos.splice(index, 1); 
     }
   }
   //優先度更新
@@ -87,7 +82,8 @@ export default (context: SetupContext) => {
   });
   //　完了済みタスク
   const complatedTodos = computed(() => {
-    return state.value.complatedTodos;
+    const filterTodos = state.value.todos.filter((item) => item.progress == true);
+    return filterTodos;
   });  
 
   const todosCount = computed(() => {

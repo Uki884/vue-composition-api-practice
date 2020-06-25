@@ -3,8 +3,8 @@
     <div class="todo-list__count" v-if="currentTab === 0">合計タスク: {{todosCount}}</div>
     <div class="todo-list__items__wrapper">
       <div class="todo-list__items" v-for="(item, index) in todos" :key="index">
-        <BaseCheckBox v-if="currentTab === 0" :value="item.progress" @change="setProgress(index)" color="green" />
-        <TodoListItem :item="item" @click="setProgress(index)" />
+        <BaseCheckBox :value="item.progress" @change="setProgress" color="green" />
+        <TodoListItem :item="item" />
         <TodoPriorityButton :priority="item.priority" size="is-small" :width="36" />
         <BaseIcon icon="window-close" @click="deleteTodo(index)"/>
       </div>
@@ -58,8 +58,8 @@ export default defineComponent({
     }
   },
   setup(props: Props, context: SetupContext) {
-    const setProgress = (index: number) => {
-      context.emit('setProgress', index);
+    const setProgress = (index: number, status: boolean) => {
+      context.emit('setProgress', index, status);
     }
     const deleteTodo = (index: number) => {
       context.emit('deleteTodo', index);
