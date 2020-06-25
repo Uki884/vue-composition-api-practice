@@ -26,7 +26,7 @@ const color: textObject = {
 type Props = {
   value: boolean;
   color: string;
-  index: number;
+  id: number;
 };
 
 export default defineComponent({
@@ -39,7 +39,7 @@ export default defineComponent({
       type: String,
       default: ''
     },
-    index: {
+    id: {
       type: Number,
       default: 0
     }
@@ -49,7 +49,7 @@ export default defineComponent({
     props.color;
 
     const updateValue = (e: Event) =>{
-      context.emit('change', props.index, !props.value);
+      context.emit('change', props.id, !props.value);
     }
 
     const checkBoxColor = computed(()=> {
