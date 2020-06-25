@@ -77,10 +77,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
     .checkbox {
+      flex: none;
       border: solid 3px white;
       box-shadow: 0 0 0 1px gray;
       margin-right: 6px;
-      width: 22px;
+      width: 18px;
       height: 18px;
       border-radius: 50%;
     }

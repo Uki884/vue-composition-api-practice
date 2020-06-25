@@ -28,11 +28,7 @@
         </div>
         <div class="component-list__item__list">
           <BaseCheckBox />
-          <BaseCheckBox color="green" />
-          <BaseCheckBox color="blue" />
-          <BaseCheckBox color="yellow" />
-          <BaseCheckBox color="red" />
-          <BaseCheckBox color="black" />
+          <BaseCheckBox color="green" :value="true" />
         </div>
       </div>
       <!--ドロップダウン-->
